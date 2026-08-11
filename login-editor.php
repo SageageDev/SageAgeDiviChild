@@ -882,9 +882,9 @@ body.login {
 
 <?php endif; ?>
 
-<?php if( !empty($bg_url)) : ?>
+<?php if( !empty($bg_size)) : ?>
 
-    background-size: <?php echo $bg_size; ?> !important;
+    background-size: <?php echo esc_attr( $bg_size ); ?> !important;
 
 <?php endif; ?>
 
@@ -951,12 +951,6 @@ body.login #login h1 a {
 <?php if( !empty($form_padding)) : ?>
 
     padding: <?php echo $form_padding; ?> !important;
-
-<?php endif; ?>
-
-<?php if( !empty($form_border)) : ?>
-
-    border: <?php echo $form_border; ?> !important;
 
 <?php endif; ?>
 

@@ -2,9 +2,14 @@
 
 function my_theme_enqueue_styles() {
     wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
-    wp_enqueue_style( 'dashicon', '/wp-includes/css/dashicons.min.css?ver=6.1.1');
+    wp_enqueue_style( 'dashicons', '/wp-includes/css/dashicons.min.css?ver=6.1.1');
 }
 add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_styles' );
+
+// No-referrer-when-downgrade meta tag (previously required a full header.php override)
+add_action( 'wp_head', function() {
+	echo '<meta name="referrer" content="no-referrer-when-downgrade" />' . "\n";
+}, 1 );
 
 // Only load Custom Shortcodes on true front-end (not admin, not Divi builder)
 if ( !is_admin() && !wp_doing_ajax() && !isset($_GET['et_fb']) && !isset($_GET['et_bfb']) ) {
@@ -47,9 +52,7 @@ wp_enqueue_style('custom_font', '//use.typekit.net/lsl7bwp.css', array(), null, 
 add_action( 'wp_enqueue_scripts', 'mytheme_enqueue_style' );
 
 /*grant unfiltered to all admin accounts*/
-function __construct() {
-	add_filter( 'map_meta_cap', array($this,'add_unfiltered_html_capability_to_role'), 1, 3 );
-}
+add_filter( 'map_meta_cap', 'add_unfiltered_html_capability_to_role', 1, 3 );
 function add_unfiltered_html_capability_to_role( $caps, $cap, $user_id ) {
 	if ( 'unfiltered_html' === $cap && user_can( $user_id, 'administrator' ) ) {
 		$caps = array( 'unfiltered_html' );
