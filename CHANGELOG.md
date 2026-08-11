@@ -2,6 +2,11 @@
 
 All notable changes to the SageAge Divi child theme are documented in this file.
 
+## [2.0.2] - 2026-08-11
+
+### Changed
+- Removed `custom-shortcodes.php` and its conditional `include()` in `functions.php`. Shortcode handling has moved to the "Community Content Shortcodes" plugin — configure site-specific values under Settings > Community Shortcodes.
+
 ## [2.0.1] - 2026-08-11
 
 ### Fixed

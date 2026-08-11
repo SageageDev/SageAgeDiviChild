@@ -11,10 +11,8 @@ add_action( 'wp_head', function() {
 	echo '<meta name="referrer" content="no-referrer-when-downgrade" />' . "\n";
 }, 1 );
 
-// Only load Custom Shortcodes on true front-end (not admin, not Divi builder)
-if ( !is_admin() && !wp_doing_ajax() && !isset($_GET['et_fb']) && !isset($_GET['et_bfb']) ) {
-    include('custom-shortcodes.php');
-}
+// Custom Shortcodes now handled by the "Community Content Shortcodes" plugin.
+// Fill in this site's values under Settings > Community Shortcodes.
 
 add_action( 'init', function() { delete_option( 'schema-ActionScheduler_StoreSchema' ); } );
 
