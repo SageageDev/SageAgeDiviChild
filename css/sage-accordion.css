@@ -1,0 +1,8 @@
+/* Accordions: Divi hides the icon on the open item, so there was no sign it could be closed.
+   Show its − (Divi's open-toggle icon) as the close control; js/sage-accordion.js makes the click close it. */
+.et_pb_accordion .et_pb_accordion_item.et_pb_toggle_open > .et_pb_toggle_title:before {
+	display: block;
+}
+.et_pb_accordion .et_pb_accordion_item > .et_pb_toggle_title {
+	cursor: pointer;
+}

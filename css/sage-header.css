@@ -1,0 +1,23 @@
+/* Fixed Theme Builder header (sections set to Position: Fixed). Nothing here applies to a site without one. */
+
+/* Start page content below the fixed header instead of under it.
+   --sage-header-h is set from the header's real height by js/sage-header-offset.js; 146px is the fallback until it runs. */
+body:has(.et-l--header .et_pb_section--fixed) #et-main-area {
+	padding-top: var(--sage-header-h, 146px);
+}
+
+/* Logged in: WordPress pushes the page down for the admin bar but Divi leaves the fixed header at top: 0,
+   so the bar covered the header's top. Drop the header below the bar. (Under 601px the bar scrolls away, so leave it.) */
+@media (min-width: 601px) {
+	body.admin-bar .et-l--header .et_pb_section--fixed {
+		top: var(--wp-admin--admin-bar--height, 32px);
+	}
+}
+
+/* The opened mobile menu hangs from the fixed header, so the page can't scroll it: on a phone the lower links
+   ended up below the screen. Cap it at the space under the header and let it scroll. */
+.et-l--header .et_pb_section--fixed .et_mobile_menu {
+	max-height: calc(100dvh - var(--sage-header-h, 146px));
+	overflow-y: auto;
+	overscroll-behavior: contain;
+}

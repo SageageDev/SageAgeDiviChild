@@ -1,0 +1,33 @@
+/* Team grid pop-up (see sage-team.js). Bios stay hidden in the grid and show in the dialog.
+   Set the colours per site by overriding these variables, e.g. in Divi's Custom CSS. */
+:root {
+	--sage-team-bg: #eef1f3;
+	--sage-team-text: #373737;
+	--sage-team-border: #c8c3bb;
+	--sage-team-backdrop: rgba(0, 0, 0, .6);
+}
+.sage-team .et_pb_team_member_description_content { display: none; }
+.sage-team .sage-has-bio { cursor: pointer; }
+.sage-team .sage-has-bio:hover img, .sage-team .sage-has-bio:focus img { opacity: .85; }
+
+.sage-team-dialog {
+	width: min(900px, 92vw); max-height: 88vh; padding: 3rem; border: 0;
+	background: var(--sage-team-bg); color: var(--sage-team-text); box-shadow: 0 10px 40px rgba(0, 0, 0, .3);
+}
+.sage-team-dialog[open] { display: flex; gap: 2.5rem; align-items: flex-start; }
+.sage-team-dialog::backdrop { background: var(--sage-team-backdrop); }
+.sage-team-photo { flex: 0 0 34%; }
+.sage-team-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block; }
+.sage-team-text { flex: 1; font-size: 15px; line-height: 1.7; }
+.sage-team-text h3 { margin: 0; padding: 0; font-size: 22px; text-transform: uppercase; color: var(--sage-team-text); }
+.sage-team-position { margin: 0 0 1.25rem; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
+.sage-team-text p { padding-bottom: 1em; }
+.sage-team-close {
+	position: absolute; top: .75rem; right: .75rem; width: 2.25rem; height: 2.25rem;
+	border: 1px solid var(--sage-team-border); background: #fff; font-size: 1.5rem; line-height: 1; cursor: pointer; color: var(--sage-team-text);
+}
+@media (max-width: 767px) {
+	.sage-team-dialog { padding: 2.5rem 1.5rem 1.5rem; }
+	.sage-team-dialog[open] { flex-direction: column; gap: 1.25rem; }
+	.sage-team-photo { flex: none; width: 60%; }
+}
